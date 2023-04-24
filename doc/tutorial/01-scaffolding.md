@@ -47,8 +47,9 @@ Let's try running this program with `lein run`.
 
 ```bash
 $ lein run
-Exception in thread "main" java.lang.Exception: Cannot find anything to run for: jepsen.etcdemo, compiling:(/tmp/form-init6673004597601163646.clj:1:73)
-...
+Execution error at user/eval140 (form-init15294711163060466740.clj:1).
+Cannot find anything to run for: jepsen.etcdemo
+…
 ```
 
 Ah, yes. We haven't written anything to run yet. We need a main function in the `jepsen.etcdemo` namespace, which will receive our command line args and run the test. In `src/jepsen/etcdemo.clj`:
@@ -108,7 +109,7 @@ runner, and uses them to fill in position in an empty test that does nothing:
 ```bash
 $ lein run
 Usage: lein run -- COMMAND [OPTIONS ...]
-Commands: test
+Commands: analyze, test
 ```
 
 With no args, `cli/run!` provides a basic help message, informing us it takes a
@@ -220,15 +221,19 @@ $ lein run test --help
 #object[jepsen.cli$test_usage 0x7ddd84b5 jepsen.cli$test_usage@7ddd84b5]
 
   -h, --help                                                  Print out this message and exit
-  -n, --node HOSTNAME             ["n1" "n2" "n3" "n4" "n5"]  Node(s) to run test on
-      --nodes-file FILENAME                                   File containing node hostnames, one per line.
-      --username USER             root                        Username for logins
-      --password PASS             root                        Password for sudo access
-      --strict-host-key-checking                              Whether to check host keys
-      --ssh-private-key FILE                                  Path to an SSH identity file
-      --concurrency NUMBER        1n                          How many workers should we run? Must be an integer, optionally followed by n (e.g. 3n) to multiply by the number of nodes.
       --test-count NUMBER         1                           How many times should we repeat a test?
+      --no-ssh                    false                       If set, doesn't try to establish SSH connections to any nodes.
+      --nodes-file FILENAME                                   File containing node hostnames, one per line.
       --time-limit SECONDS        60                          Excluding setup and teardown, how long should a test run for, in seconds?
+      --logging-json              false                       Use JSON structured output in the Jepsen log.
+      --username USER             root                        Username for logins
+      --concurrency NUMBER        1n                          How many workers should we run? Must be an integer, optionally followed by n (e.g. 3n) to multiply by the number of nodes.
+  -n, --node HOSTNAME             ["n1" "n2" "n3" "n4" "n5"]  Node(s) to run test on. Flag may be submitted many times, with one node per flag.
+      --leave-db-running          false                       Leave the database running at the end of the test., so you can inspect it.
+      --password PASS             root                        Password for sudo access
+      --strict-host-key-checking  false                       Whether to check host keys
+      --ssh-private-key FILE                                  Path to an SSH identity file
+      --nodes NODE_LIST                                       Comma-separated list of node hostnames.
 ```
 
 We'll use `lein run test ...` throughout this guide to re-run our Jepsen test. Each time we run a test, Jepsen will create a new directory in `store/`. You can see the latest results in `store/latest`:
@@ -262,8 +267,8 @@ how to run those commands. We're merging those maps together with `merge`.
 
 ```bash
 $ lein run serve
-13:29:21.425 [main] INFO  jepsen.web - Web server running.
-13:29:21.428 [main] INFO  jepsen.cli - Listening on http://0.0.0.0:8080/
+13:29:21.425 [main] INFO jepsen.web - I'll see YOU after the function
+13:29:21.428 [main] INFO jepsen.cli - Listening on http://0.0.0.0:8080/
 ```
 
 We can open `http://localhost:8080` in a web browser to explore the history of
