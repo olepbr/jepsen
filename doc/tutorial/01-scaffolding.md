@@ -250,15 +250,15 @@ We'll use `lein run test ...` throughout this guide to re-run our Jepsen test. E
 
 ```bash
 $ ls store/latest/
-history.txt  jepsen.log  results.edn  test.fressian
+history.edn  history.txt  jepsen.log  results.edn  test.jepsen
 ```
 
-`history.txt` shows the operations the test performed--ours is empty, since the
-noop test doesn't perform any ops. `jepsen.log` has a copy of the console log
-for that test. `results.edn` shows the analysis of the test, which we see at
-the end of each run. Finally, `test.fressian` has the raw data for the test,
-including the full machine-readable history and analysis, if you need to
-perform post-hoc analysis.
+`history.edn` and `history.txt` show the operations the test performed--ours are
+empty, since the noop test doesn't perform any ops. `jepsen.log` has a copy of
+the console log for that test. `results.edn` shows the analysis of the test,
+which we see at the end of each run. Finally, `test.jepsen` has the raw data
+for the test, including the full machine-readable history and analysis, if you
+need to perform post-hoc analysis.
 
 Jepsen also comes with a built-in web browser for browsing these results. Let's add it to our `main` function:
 
