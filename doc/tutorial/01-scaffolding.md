@@ -119,81 +119,91 @@ Let's give it a shot!
 
 ```bash
 $ lein run test
-13:04:30.927 [main] INFO  jepsen.cli - Test options:
+08:44:44.491 [main] INFO jepsen.cli - Test options:
  {:concurrency 5,
- :test-count 1,
- :time-limit 60,
- :nodes ["n1" "n2" "n3" "n4" "n5"],
+ :leave-db-running? false,
+ :logging-json? false,
  :ssh
- {:username "root",
-  :password "root",
-  :strict-host-key-checking false,
-  :private-key-path nil}}
-
-INFO [2018-02-02 13:04:30,994] jepsen test runner - jepsen.core Running test:
- {:concurrency 5,
- :db
- #object[jepsen.db$reify__1259 0x6dcf7b6a "jepsen.db$reify__1259@6dcf7b6a"],
- :name "noop",
- :start-time
- #object[org.joda.time.DateTime 0x79d4ff58 "2018-02-02T13:04:30.000-06:00"],
- :net
- #object[jepsen.net$reify__3493 0xae3c140 "jepsen.net$reify__3493@ae3c140"],
- :client
- #object[jepsen.client$reify__3380 0x20027c44 "jepsen.client$reify__3380@20027c44"],
- :barrier
- #object[java.util.concurrent.CyclicBarrier 0x2bf3ec4 "java.util.concurrent.CyclicBarrier@2bf3ec4"],
- :ssh
- {:username "root",
+ {:dummy? false,
+  :username "root",
   :password "root",
   :strict-host-key-checking false,
   :private-key-path nil},
- :checker
- #object[jepsen.checker$unbridled_optimism$reify__3146 0x1410d645 "jepsen.checker$unbridled_optimism$reify__3146@1410d645"],
- :nemesis
- #object[jepsen.nemesis$reify__3574 0x4e6cbdf1 "jepsen.nemesis$reify__3574@4e6cbdf1"],
- :active-histories #<Atom@210a26b: #{}>,
+ :argv ("test"),
  :nodes ["n1" "n2" "n3" "n4" "n5"],
  :test-count 1,
- :generator
- #object[jepsen.generator$reify__1936 0x1aac0a47 "jepsen.generator$reify__1936@1aac0a47"],
- :os
- #object[jepsen.os$reify__1176 0x438aaa9f "jepsen.os$reify__1176@438aaa9f"],
- :time-limit 60,
- :model {}}
+ :time-limit 60}
 
-INFO [2018-02-02 13:04:35,389] jepsen nemesis - jepsen.core Starting nemesis
-INFO [2018-02-02 13:04:35,389] jepsen worker 1 - jepsen.core Starting worker 1
-INFO [2018-02-02 13:04:35,389] jepsen worker 2 - jepsen.core Starting worker 2
-INFO [2018-02-02 13:04:35,389] jepsen worker 0 - jepsen.core Starting worker 0
-INFO [2018-02-02 13:04:35,390] jepsen worker 3 - jepsen.core Starting worker 3
-INFO [2018-02-02 13:04:35,390] jepsen worker 4 - jepsen.core Starting worker 4
-INFO [2018-02-02 13:04:35,391] jepsen nemesis - jepsen.core Running nemesis
-INFO [2018-02-02 13:04:35,391] jepsen worker 1 - jepsen.core Running worker 1
-INFO [2018-02-02 13:04:35,391] jepsen worker 2 - jepsen.core Running worker 2
-INFO [2018-02-02 13:04:35,391] jepsen worker 0 - jepsen.core Running worker 0
-INFO [2018-02-02 13:04:35,391] jepsen worker 3 - jepsen.core Running worker 3
-INFO [2018-02-02 13:04:35,391] jepsen worker 4 - jepsen.core Running worker 4
-INFO [2018-02-02 13:04:35,391] jepsen nemesis - jepsen.core Stopping nemesis
-INFO [2018-02-02 13:04:35,391] jepsen worker 1 - jepsen.core Stopping worker 1
-INFO [2018-02-02 13:04:35,391] jepsen worker 2 - jepsen.core Stopping worker 2
-INFO [2018-02-02 13:04:35,391] jepsen worker 0 - jepsen.core Stopping worker 0
-INFO [2018-02-02 13:04:35,391] jepsen worker 3 - jepsen.core Stopping worker 3
-INFO [2018-02-02 13:04:35,391] jepsen worker 4 - jepsen.core Stopping worker 4
-INFO [2018-02-02 13:04:35,397] jepsen test runner - jepsen.core Run complete, writing
-INFO [2018-02-02 13:04:35,434] jepsen test runner - jepsen.core Analyzing
-INFO [2018-02-02 13:04:35,435] jepsen test runner - jepsen.core Analysis complete
-INFO [2018-02-02 13:04:35,438] jepsen results - jepsen.store Wrote /home/aphyr/jepsen/jepsen.etcdemo/store/noop/20180202T130430.000-0600/results.edn
-INFO [2018-02-02 13:04:35,440] main - jepsen.core {:valid? true}
+INFO [2023-04-24 08:44:44,552] jepsen test runner - jepsen.core Test version ce80a8b7152e3e70c023a181a84a8891fd51d91f (plus uncommitted changes)
+INFO [2023-04-24 08:44:44,552] jepsen test runner - jepsen.core Command line:
+lein run test
+INFO [2023-04-24 08:44:44,577] jepsen test runner - jepsen.core Running test:
+{:remote
+ #jepsen.control.retry.Remote{:remote #jepsen.control.scp.Remote{:cmd-remote #jepsen.control.sshj.SSHJRemote{:concurrency-limit 6,
+                                                                                                             :conn-spec nil,
+                                                                                                             :client nil,
+                                                                                                             :semaphore nil},
+                                                                 :conn-spec nil},
+                              :conn nil}
+ :concurrency 5
+ :db
+ #object[jepsen.db$reify__8900 "0x4f356b98" "jepsen.db$reify__8900@4f356b98"]
+ :leave-db-running? false
+ :name "noop"
+ :logging-json? false
+ :start-time
+ #object[org.joda.time.DateTime "0x4037cdb0" "2023-04-24T08:44:44.493Z"]
+ :net
+ #object[jepsen.net$reify__12476
+         "0x27055a2a"
+         "jepsen.net$reify__12476@27055a2a"]
+ :client
+ #object[jepsen.client$reify__12223
+         "0x33e4068"
+         "jepsen.client$reify__12223@33e4068"]
+ :barrier
+ #object[java.util.concurrent.CyclicBarrier
+         "0x9499643"
+         "java.util.concurrent.CyclicBarrier@9499643"]
+ :pure-generators true
+ :ssh
+ {:dummy? false,
+  :username "root",
+  :password "root",
+  :strict-host-key-checking false,
+  :private-key-path nil}
+ :checker
+ #object[jepsen.checker$unbridled_optimism$reify__11892
+         "0x776d8097"
+         "jepsen.checker$unbridled_optimism$reify__11892@776d8097"]
+ :argv ("test")
+ :nemesis #unprintable "jepsen.nemesis$reify__12579@7a34505a"
+ :nodes ["n1" "n2" "n3" "n4" "n5"]
+ :test-count 1
+ :generator nil
+ :os #object[jepsen.os$reify__4576 "0xd5a72cd" "jepsen.os$reify__4576@d5a72cd"]
+ :time-limit 60}
+
+INFO [2023-04-24 08:44:48,081] jepsen test runner - jepsen.db Tearing down DB
+INFO [2023-04-24 08:44:48,083] jepsen test runner - jepsen.db Setting up DB
+INFO [2023-04-24 08:44:48,086] jepsen test runner - jepsen.core Relative time begins now
+INFO [2023-04-24 08:44:48,112] jepsen test runner - jepsen.core Run complete, writing
+INFO [2023-04-24 08:44:48,144] jepsen test runner - jepsen.core Analyzing...
+INFO [2023-04-24 08:44:48,145] jepsen test runner - jepsen.core Analysis complete
+INFO [2023-04-24 08:44:48,146] jepsen results - jepsen.store Wrote /jepsen/jepsen.etcdemo/store/noop/20230424T084444.493Z/results.edn
+INFO [2023-04-24 08:44:48,164] jepsen test runner - jepsen.core {:valid? true}
+
 
 Everything looks good! ヽ(‘ー`)ノ
 ```
 
-We can see Jepsen start a series of workers--each one responsible for executing
-operations against the database--and a nemesis, which causes failures. We
-haven't given them anything to do, so they shut down immediately. Jepsen writes
-out the result of this (trivial) test to the `store` directory, and prints out
-a brief analysis.
+We can see Jepsen tear down and set up the (non-existent) DB and start the test
+run, which finishes immediately as we haven't given our worker nodes anything
+to do. It then analyzes the run using the
+[unbridled-optimism](https://jepsen-io.github.io/jepsen/jepsen.checker.html#var-unbridled-optimism)
+checker -- which, as the name implies, doesn't do any checking -- and writes
+the test result to the `store` directory, before printing a brief summary of
+the analysis.
 
 `noop-test` uses nodes named `n1`, `n2`, ... `n5` by default. If your nodes
 have different names, this test will fail to connect to them. That's OK! You can change that by passing node names on the command line:
