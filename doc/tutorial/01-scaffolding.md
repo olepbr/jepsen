@@ -38,8 +38,8 @@ Verschlimmbesserung: a library for talking to etcd.
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :main jepsen.etcdemo
-  :dependencies [[org.clojure/clojure "1.10.0"]
-                 [jepsen "0.2.1-SNAPSHOT"]
+  :dependencies [[org.clojure/clojure "1.11.1"]
+                 [jepsen "0.3.2"]
                  [verschlimmbesserung "0.1.3"]])
 ```
 
